@@ -10,3 +10,4 @@ Continuous Metrics for Evaluating Single-f0 Estimation
 - [ ] Run Crepe on MedleyDB-Pitch
 - [ ] Run Melodia (with confidence output) on iKala + Orchset + MedleyDB-Melody
 - [ ] Run Deep Salience on iKala + Orchset + MedleyDB-Melody
+- [ ] Implement new metrics
