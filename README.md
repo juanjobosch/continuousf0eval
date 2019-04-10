@@ -4,13 +4,15 @@ Continuous Metrics for Evaluating Single-f0 Estimation
 
 ## To-Do
 
-- [ ] Section 4 - qualitative example from ikala or medleydb where estimated voicing disagrees with pitch annotation
+- [ ] 4 - qualitative example from ikala or medleydb where estimated voicing disagrees with pitch annotation
+- [ ] 4 - example showing results consistency of source separated vs rms computed confidence vals
 - [x] 5.1 Crepe + pyin on medleydb-pitch, old + new metrics
 - [x] 5.1 MedleyDB + Deep Salience on iKala, old + new metrics
 - [x] 5.2 Melodia + Deep Salience on iKala (MDB-melody?) grid of thresholds
 - [x] 5.2 Crepe + pyin on MedleyDB-pitch, grid of thresholds
-- [x] 5.4 One algorithm (deep salience + ikala), 2 x 2 combo of binary + continous results in new metric, discuss difference
-- [ ] 5.3 Look at effect of rescaling confidence values on metrics
+- [x] 5.3 One algorithm (deep salience + ikala), 2 x 2 combo of binary + continous results in new metric, discuss difference
+- [ ] 5.4 Look at effect of rescaling confidence values on metrics
+- [ ] 5.5 plot with toy examples
 - [x] Write code to use normalized energy as a proxy for confidence
 - [x] Compute confidence proxy on MedleyDB-Pitch
 - [x] Compute confidence proxy on IKala

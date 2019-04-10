@@ -1,13 +1,19 @@
 import mirdata
 import csv
+import os
 import numpy as np
 import scipy
 
 
-def ikala(track_id):
+def ikala(track_id, source_sep=False):
 
-    confidence_fpath = (
-        "../experiments/confidence/iKala/{}.wav.conf.csv".format(track_id))
+    if source_sep:
+        confidence_fpath = os.path.join(
+            "../experiments/separation_confidence",
+            "iKala", "{}_VUIMM.wav.conf.csv".format(track_id))
+    else:
+        confidence_fpath = (
+            "../experiments/confidence/iKala/{}.wav.conf.csv".format(track_id))
 
     with open(confidence_fpath, 'r') as fhandle:
         reader = csv.reader(fhandle, delimiter=',')
