@@ -17,13 +17,13 @@ def evaluate(ref_times, ref_freqs, ref_voicing,
         ref_freqs, ref_voicing, est_freqs_resampled)
     metrics['Voicing Recall'] = voicing_recall(
         ref_voicing, est_voicing_resampled)
-    metrics['Voicing Precision'] = voicing_precision(
-        ref_voicing, est_voicing_resampled)
+    # metrics['Voicing Precision'] = voicing_precision(
+    #     ref_voicing, est_voicing_resampled)
     metrics['Voicing False Alarm'] = voicing_false_alarm(
         ref_voicing, est_voicing_resampled)
-    metrics['Voicing F-Score'] = (
-        2.0 * (metrics['Voicing Recall'] * metrics['Voicing Precision']) /
-        (metrics['Voicing Recall'] + metrics['Voicing Precision']))
+    # metrics['Voicing F-Score'] = (
+    #     2.0 * (metrics['Voicing Recall'] * metrics['Voicing Precision']) /
+    #     (metrics['Voicing Recall'] + metrics['Voicing Precision']))
 
     return metrics
 
@@ -58,7 +58,8 @@ def raw_chroma_accuracy(ref_freqs, ref_voicing, est_freqs):
 
 
 def voicing_recall(ref_voicing, est_voicing):
-    return np.sum(est_voicing * ref_voicing) / np.sum(ref_voicing)
+    ref_indicator = (ref_voicing > 0).astype(float)
+    return np.sum(est_voicing * ref_indicator) / np.sum(ref_indicator)
 
 
 def voicing_precision(ref_voicing, est_voicing):
@@ -66,8 +67,8 @@ def voicing_precision(ref_voicing, est_voicing):
 
 
 def voicing_false_alarm(ref_voicing, est_voicing):
-    return (np.sum(est_voicing * (1.0 - ref_voicing)) /
-            np.sum(1.0 - ref_voicing))
+    ref_indicator = (ref_voicing == 0).astype(float)
+    return np.sum(est_voicing * ref_indicator) / np.sum(ref_indicator)
 
 
 # def overall_accuracy(ref_freqs, ref_voicing, est_freqs, est_voicing):
