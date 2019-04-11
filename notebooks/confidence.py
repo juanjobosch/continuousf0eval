@@ -10,7 +10,7 @@ def ikala(track_id, source_sep=False):
     if source_sep:
         confidence_fpath = os.path.join(
             "../experiments/separation_confidence",
-            "iKala", "{}_VUIMM.wav.conf.csv".format(track_id))
+            "iKala", "{}_lead_VUIMM.wav.conf.csv".format(track_id))
     else:
         confidence_fpath = (
             "../experiments/confidence/iKala/{}.wav.conf.csv".format(track_id))

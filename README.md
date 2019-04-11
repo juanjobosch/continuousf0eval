@@ -4,8 +4,8 @@ Continuous Metrics for Evaluating Single-f0 Estimation
 
 ## To-Do
 
-- [ ] 4 - qualitative example from ikala or medleydb where estimated voicing disagrees with pitch annotation
-- [ ] 4 - example showing results consistency of source separated vs rms computed confidence vals
+- [x] 4 - qualitative example from ikala or medleydb where estimated voicing disagrees with pitch annotation
+- [x] 4 - example showing results consistency of source separated vs rms computed confidence vals
 - [x] 5.1 Crepe + pyin on medleydb-pitch, old + new metrics
 - [x] 5.1 MedleyDB + Deep Salience on iKala, old + new metrics
 - [x] 5.2 Melodia + Deep Salience on iKala (MDB-melody?) grid of thresholds
