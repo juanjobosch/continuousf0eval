@@ -68,7 +68,15 @@ def load_melodia(fpath):
             freqs.append(float(line[1]))
             conf.append(float(line[2]))
     conf = np.array(conf)
-    # confidences are all very low... dividing by the max
+    # conf[conf > 0] += 0.15
+    # negative_conf = conf < 0
+    # if np.sum(negative_conf) > 0:
+    #     conf[negative_conf] = np.abs(conf[negative_conf])
+    #     conf[negative_conf] = (
+    #         conf[negative_conf] - np.min(conf[negative_conf]) + 0.05)
+    #     conf[negative_conf] /= np.max(conf[negative_conf])
+    #     conf[negative_conf] *= 0.15
+
     return np.array(times), np.array(freqs), conf / np.max(conf)
 
 

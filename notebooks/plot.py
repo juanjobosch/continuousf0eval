@@ -68,4 +68,5 @@ def add_plot(subplot_tuple, metrics, dfbox, n_algs, title,
             h_color = patches.Rectangle((0, 0), 1, 1, facecolor=color)
             legend_colors.append(h_color)
 
-        plt.legend(legend_colors, legend_labels, ncol=1, loc=legend_loc)
+        plt.legend(
+            legend_colors[::-1], legend_labels[::-1], ncol=1, loc=legend_loc)
