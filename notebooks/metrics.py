@@ -59,6 +59,8 @@ def raw_chroma_accuracy(ref_freqs, ref_voicing, est_freqs):
 
 def voicing_recall(ref_voicing, est_voicing):
     ref_indicator = (ref_voicing > 0).astype(float)
+    if np.sum(ref_indicator) == 0:
+        return 1
     return np.sum(est_voicing * ref_indicator) / np.sum(ref_indicator)
 
 
@@ -68,6 +70,8 @@ def voicing_precision(ref_voicing, est_voicing):
 
 def voicing_false_alarm(ref_voicing, est_voicing):
     ref_indicator = (ref_voicing == 0).astype(float)
+    if np.sum(ref_indicator) == 0:
+        return 0
     return np.sum(est_voicing * ref_indicator) / np.sum(ref_indicator)
 
 
