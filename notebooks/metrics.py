@@ -138,7 +138,7 @@ def resample_melody_series(times, frequencies, voicing,
 
     # If the timebases are already the same, no need to interpolate
     if times.shape == times_new.shape and np.allclose(times, times_new):
-        return frequencies, voicing.astype(np.bool)
+        return frequencies, voicing.astype(float)
 
     # Warn when the delta between the original times is not constant,
     if not np.allclose(np.diff(times), np.diff(times).mean()):
