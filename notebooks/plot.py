@@ -10,19 +10,26 @@ def get_dfbox(data_frame_list, metrics):
     n_groups = len(data_frame_list)
     for metric in metrics:
         for data_frame in data_frame_list:
-            boxdata.extend([
-                data_frame[metric],
-            ])
+            boxdata.extend([data_frame[metric]])
 
     dfbox = pd.DataFrame(np.array(boxdata).T)
     return dfbox, n_groups
 
 
-def add_plot(subplot_tuple, metrics, dfbox, n_algs, title,
-             show_yaxis=True, legend_loc=None, xlim=None,
-             legend_labels=None, colors=None):
+def add_plot(
+    subplot_tuple,
+    metrics,
+    dfbox,
+    n_algs,
+    title,
+    show_yaxis=True,
+    legend_loc=None,
+    xlim=None,
+    legend_labels=None,
+    colors=None,
+):
     plt.subplot(subplot_tuple)
-    plt.title(title, weight='bold')
+    plt.title(title, weight="bold")
     n_metrics = len(metrics)
     positions = []
     k = 1
@@ -40,24 +47,25 @@ def add_plot(subplot_tuple, metrics, dfbox, n_algs, title,
     colors = current_palette[:n_algs] * n_metrics
 
     box = plt.boxplot(
-        dfbox.values, widths=0.8, positions=positions,
-        patch_artist=True, showmeans=True,
-        medianprops={'color': 'k'},
-        meanprops=dict(marker='D', markeredgecolor='black',
-                       markerfacecolor='k'),
+        dfbox.values,
+        widths=0.8,
+        positions=positions,
+        patch_artist=True,
+        showmeans=True,
+        medianprops={"color": "k"},
+        meanprops=dict(marker="D", markeredgecolor="black", markerfacecolor="k"),
         vert=False,
-        showfliers=False
+        showfliers=False,
     )
-    for patch, color in zip(box['boxes'], colors):
+    for patch, color in zip(box["boxes"], colors):
         patch.set_facecolor(color)
 
-    plt.xlabel('Score')
-    yticks = np.arange(
-        (n_algs + 1) / 2, ((n_algs + 1) * n_metrics), n_algs + 1)
+    plt.xlabel("Score")
+    yticks = np.arange((n_algs + 1) / 2, ((n_algs + 1) * n_metrics), n_algs + 1)
     if show_yaxis:
-        plt.yticks(yticks, metrics, rotation='horizontal', weight='bold')
+        plt.yticks(yticks, metrics, rotation="horizontal", weight="bold")
     else:
-        plt.yticks(yticks, [''] * len(metrics), rotation='horizontal')
+        plt.yticks(yticks, [""] * len(metrics), rotation="horizontal")
 
     if xlim is not None:
         plt.xlim(xlim)
@@ -68,5 +76,4 @@ def add_plot(subplot_tuple, metrics, dfbox, n_algs, title,
             h_color = patches.Rectangle((0, 0), 1, 1, facecolor=color)
             legend_colors.append(h_color)
 
-        plt.legend(
-            legend_colors[::-1], legend_labels[::-1], ncol=1, loc=legend_loc)
+        plt.legend(legend_colors[::-1], legend_labels[::-1], ncol=1, loc=legend_loc)

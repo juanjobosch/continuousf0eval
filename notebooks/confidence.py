@@ -9,11 +9,11 @@ def ikala(track_id, source_sep=False):
 
     if source_sep:
         confidence_fpath = os.path.join(
-            "../experiments/new_conf/separation",
+            "../experiments/new_conf_2x/separation",
             "iKala", "{}_lead_VUIMM.wav.conf.csv".format(track_id))
     else:
         confidence_fpath = (
-            "../experiments/new_conf/stems/iKala/{}.wav.conf.csv".format(track_id))
+            "../experiments/new_conf_2x/stems/iKala/{}.wav.conf.csv".format(track_id))
 
     with open(confidence_fpath, 'r') as fhandle:
         reader = csv.reader(fhandle, delimiter=',')
@@ -37,7 +37,7 @@ def ikala(track_id, source_sep=False):
 def medleydb_pitch(track_id):
 
     confidence_fpath = (
-        "../experiments/confidence/MedleyDB-Pitch/{}.wav.conf.csv".format(track_id))
+        "../experiments/new_conf_2x/stems/MedleyDB-Pitch/{}.wav.conf.csv".format(track_id))
 
     with open(confidence_fpath, 'r') as fhandle:
         reader = csv.reader(fhandle, delimiter=',')
@@ -58,25 +58,25 @@ def medleydb_pitch(track_id):
     return conf
 
 
-def orchset(track_id):
+# def orchset(track_id):
 
-    confidence_fpath = (
-        "../experiments/new_conf/separation/Orchset/{}_lead_VUIMM.wav.conf.csv".format(track_id))
+#     confidence_fpath = (
+#         "../experiments/new_conf/separation/Orchset/{}_lead_VUIMM.wav.conf.csv".format(track_id))
 
-    with open(confidence_fpath, 'r') as fhandle:
-        reader = csv.reader(fhandle, delimiter=',')
-        raw_times, raw_conf = [], []
+#     with open(confidence_fpath, 'r') as fhandle:
+#         reader = csv.reader(fhandle, delimiter=',')
+#         raw_times, raw_conf = [], []
 
-        for line in reader:
-            raw_times.append(float(line[0]))
-            raw_conf.append(float(line[1]))
+#         for line in reader:
+#             raw_times.append(float(line[0]))
+#             raw_conf.append(float(line[1]))
 
-    track_data = mirdata.orchset.load_track(track_id)
+#     track_data = mirdata.orchset.load_track(track_id)
 
-    conf = scipy.interpolate.interp1d(
-        np.array(raw_times), np.array(raw_conf),
-        'linear', fill_value=0.0, bounds_error=False)(track_data.melody.times)
+#     conf = scipy.interpolate.interp1d(
+#         np.array(raw_times), np.array(raw_conf),
+#         'linear', fill_value=0.0, bounds_error=False)(track_data.melody.times)
 
-    conf = conf * (track_data.melody.frequencies > 0).astype('float')
+#     conf = conf * (track_data.melody.frequencies > 0).astype('float')
 
-    return conf
+#     return conf
