@@ -84,14 +84,29 @@ def voicing_false_alarm(ref_voicing, est_voicing):
 #     return (1. / n_points) * np.sum(numerator / denominator)
 
 
+# def overall_accuracy(ref_freqs, ref_voicing, est_freqs, est_voicing):
+#     correct_frequencies = frequency_comparison(est_freqs, ref_freqs, 0.5)
+
+#     est_weighting = (est_voicing * correct_frequencies +
+#                      ((1 - est_voicing) * (1 - correct_frequencies)))
+#     ref_weighting = (ref_voicing * correct_frequencies) + (1 - ref_voicing)
+
+#     return np.mean(est_weighting * ref_weighting)
+
+
 def overall_accuracy(ref_freqs, ref_voicing, est_freqs, est_voicing):
     correct_frequencies = frequency_comparison(est_freqs, ref_freqs, 0.5)
+    ref_binary = (ref_voicing > 0).astype(float)
+    n_frames = float(len(ref_voicing))
 
-    est_weighting = (est_voicing * correct_frequencies +
-                     ((1 - est_voicing) * (1 - correct_frequencies)))
-    ref_weighting = (ref_voicing * correct_frequencies) + (1 - ref_voicing)
+    return (
+        ((np.sum(ref_binary) / np.sum(ref_voicing)) *
+            np.sum(ref_voicing * est_voicing * correct_frequencies)) +
+        np.sum((1.0 - ref_binary) * (1.0 - est_voicing))
+    ) / n_frames
 
-    return np.mean(est_weighting * ref_weighting)
+
+#     return np.mean(est_weighting * ref_weighting)
 
 
 def interp_with_zeros(x, y, kind, x_new):
