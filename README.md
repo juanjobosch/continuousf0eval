@@ -3,16 +3,20 @@ Continuous Metrics for Evaluating Single-f0 Estimation
 
 Companion code for the paper:
 
-
+```
 "Generalized Metrics for Single-F0 Estimation Evaluation"
-
 Rachel M. Bittner and Juan José Bosch
-
 in International Society for Music Information Retrieval (ISMIR) Conference, 2019
-
+```
 
 ```
-@inproceedings{bittner_bosch_2019, title={Generalized Metrics for Single-F0 Estimation Evaluation}, author={Bittner, Rachel M and Bosch, Juan J.}, booktitle={International Society for Music Information Retrieval (ISMIR) Conference}, year={2019}}
+@inproceedings{
+  bittner_bosch_2019,
+  title={Generalized Metrics for Single-F0 Estimation Evaluation},
+  author={Bittner, Rachel M and Bosch, Juan J.},
+  booktitle={International Society for Music Information Retrieval (ISMIR) Conference},
+  year={2019}
+}
 ```
 
 
